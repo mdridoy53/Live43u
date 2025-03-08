@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Match Playlist</title>
+</head>
+<body>
+
+    <h1>Live Match Streaming</h1>
+    <p>Click the button below to download the M3U playlist.</p>
+
+    <button onclick="downloadM3U()">Download Playlist</button>
+
+    <script>
+        function downloadM3U() {
+            // Define the ad and stream URLs
+            const adUrl = "https://www.effectiveratecpm.com/d2189jj6zk?key=55584f37c9ff8d0961281715905fe7fa";
+            const streamUrl = "https://amartechbd.xyz/toffeebd/?play=match-1";
+
+            // Create the M3U content
+            const m3uContent = `#EXTM3U
+#EXTINF:10, Advertisement
+${adUrl}
+#EXTINF:-1, Live Match
+${streamUrl}
+`;
+
+            // Create a Blob (file) and download it
+            const blob = new Blob([m3uContent], { type: 'audio/x-mpegurl' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "playlist.m3u";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+</html>
